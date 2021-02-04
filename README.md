@@ -1,1 +1,2 @@
 # PwMan
+PwMan is a gpg Password Storing Program. It uses your gpg ID to encrypt and store files. This is a prototype as a later version will be released. I want to implement tkinter into my program and make it a little more failsafe. to use on linux, python pwman.py ...I also included a logging function to make sure your files remain untouched. With later plans to encrypt the log every so often, for verification.
