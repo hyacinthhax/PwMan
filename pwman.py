@@ -6,10 +6,11 @@ import random
 def inknow():
 	uip = int(input("What would you like to do? \n 1)Make a new entry \n 2)View an Entry \n 3)View Files \n Enter #: "))
 	if uip == 1:
-		global ft, fu, fp, fn
-		ft = raw_input("What will the File be Called?(Format to Lowercase):  ").lower()
+		global ft, fu, fp, fn, com
+		ft = raw_input("What will the File be Called? \n (Will Format to Lowercase) \n (This Will OVERWRITE Files of the SAME NAME):  ").lower()
 		fn = ft + ".txt"
 		print(fn)
+		com = raw_input("Is there a Comment you'd like to add?:   ")
 		fu = raw_input("What's the Username?:  ")
 		fp = raw_input("Whats the Password? Enter To Generate(35):  ")
 		if fp == "":
@@ -50,7 +51,7 @@ logging.basicConfig(filename = "pwman.log", level = logging.DEBUG, format = LOG_
 logger = logging.getLogger()
 
 def encryption():
-	a_key = "YOURKEYID"
+	a_key = "YOURKEYIDHERE"
 	with open(fn, "rb") as afile:
     		text = afile.read()
 		c = gpg.core.Context(armor=True)
@@ -66,11 +67,11 @@ def encryption():
 
 def create():
 	with open(fn, 'w+') as filen:
-		text = str(ft + '\n' + fu + '\n' + fp + '\n')
+		text = str(ft + '\n' + fu + '\n' + fp + '\n' + com)
 		filen.write(text)
 
 def decryption():
-	a_key = "YOURKEYID"
+	a_key = "YOURKEYIDHERE"
 	with open("{0}.asc".format(fn), "rb") as cfile:
     		plaintext, result, verify_result = gpg.Context().decrypt(cfile)
     		print(plaintext)
